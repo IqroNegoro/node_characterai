@@ -1,3 +1,4 @@
+require("puppeteer-extra-plugin-stealth/evasions/chrome.app")
 const CharacterAI = require("./client");
 
 const characterAI = new CharacterAI();
