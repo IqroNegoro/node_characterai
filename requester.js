@@ -1,6 +1,7 @@
 const puppeteer = require("puppeteer-extra");
 const StealthPlugin = require("puppeteer-extra-plugin-stealth")
 const fs = require("fs");
+const chromium = require("@sparticuz/chromium");
 
 let chromiumPath = process.platform === "linux" ? "/usr/bin/chromium-browser" : null;
 if (chromiumPath && !fs.existsSync(chromiumPath)) console.log("[node_characterai] Puppeteer - Warning: the specified Chromium path for puppeteer could not be located. If the script does not work properly, you may need to specify a path to the Chromium binary file/executable.");
@@ -100,7 +101,7 @@ class Requester {
             headless: this.headless,
             args: this.puppeteerLaunchArgs,
             protocolTimeout: this.puppeteerProtocolTimeout || 0, // Props to monckey100
-            executablePath: this.puppeteerPath || null
+            executablePath: process.env.AWS_EXECUTION_ENV ? '/opt/nodejs/node_modules/@sparticuz/chromium/bin' : this.puppeteerPath || null
         });
         this.browser = browser;
 

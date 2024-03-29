@@ -26,10 +26,13 @@
     "url": "https://github.com/realcoloride/node_characterai/issues"
   },
   "dependencies": {
+    "@sparticuz/chromium": "^123.0.0",
+    "express": "^4.19.2",
     "jimp": "^0.22.8",
     "json-bigint": "^1.0.0",
     "node-fetch": "^3.3.0",
     "puppeteer": "^19.11.1",
+    "puppeteer-core": "^22.6.1",
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
     "uuid": "^9.0.0"
