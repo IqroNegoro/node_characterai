@@ -101,7 +101,7 @@ class Requester {
             headless: this.headless,
             args: this.puppeteerLaunchArgs,
             protocolTimeout: this.puppeteerProtocolTimeout || 0, // Props to monckey100
-            executablePath: process.env.AWS_EXECUTION_ENV ? '/opt/nodejs/node_modules/@sparticuz/chromium/bin' : this.puppeteerPath || null
+            executablePath: this.puppeteerPath || null
         });
         this.browser = browser;
 
