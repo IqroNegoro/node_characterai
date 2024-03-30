@@ -102,7 +102,7 @@ class Requester {
         const browser = await puppeteer.launch({
             headless: this.headless,
             args: [...chromium.args, ...this.puppeteerLaunchArgs],
-            executablePath: process.env.NODE_ENV === 'production' ? await chromium.executablePath('https://github.com/Sparticuz/chromium/releases/download/v116.0.0/chromium-v116.0.0-pack.tar') : this.puppeteerPath || null,
+            executablePath: await chromium.executablePath('https://github.com/Sparticuz/chromium/releases/download/v116.0.0/chromium-v116.0.0-pack.tar'),
             ignoreHTTPSErrors: true,
         });
         this.browser = browser;
