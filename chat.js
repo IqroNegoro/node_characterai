@@ -64,7 +64,7 @@ class Chat {
             const replies = response.replies;
 
             const messages = []
-            console.log(replies)
+
             for (let i = 0; i < replies.length; i++) {
                 messages.push(new Reply(this, response));
             }

@@ -3,6 +3,8 @@ const StealthPlugin = require("puppeteer-extra-plugin-stealth")
 const fs = require("fs");
 const chromium = require("@sparticuz/chromium");
 
+chromium.setHeadlessMode = true;
+
 let chromiumPath = process.platform === "linux" ? "/usr/bin/chromium-browser" : null;
 if (chromiumPath && !fs.existsSync(chromiumPath)) console.log("[node_characterai] Puppeteer - Warning: the specified Chromium path for puppeteer could not be located. If the script does not work properly, you may need to specify a path to the Chromium binary file/executable.");
 
@@ -99,9 +101,9 @@ class Requester {
         puppeteer.use(StealthPlugin());
         const browser = await puppeteer.launch({
             headless: this.headless,
-            args: this.puppeteerLaunchArgs,
-            protocolTimeout: this.puppeteerProtocolTimeout || 0, // Props to monckey100
-            executablePath: this.puppeteerPath || null
+            args: [...chromium.args, ...this.puppeteerLaunchArgs],
+            executablePath: process.env.NODE_ENV === 'production' ? await chromium.executablePath('https://github.com/Sparticuz/chromium/releases/download/v116.0.0/chromium-v116.0.0-pack.tar') : this.puppeteerPath || null,
+            ignoreHTTPSErrors: true,
         });
         this.browser = browser;
 
